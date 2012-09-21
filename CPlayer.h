@@ -30,21 +30,21 @@ public:
 	Packet_InCar		InCarSync;				// 0x86
 	Packet_Passanger	PassangerSync;			// 0xC5
 	Packet_Aim			AimSync;				// 0xDD
-	unsigned char		unk_3[0x179];			// 0xFC
-	unsigned long		AimSyncSendState;		// 0x275
-	unsigned char		unk_4[0x8];				// 0x279
-	unsigned char		State;					// 0x281
-	unsigned char		unk_5[0x39];			// 0x282
-	unsigned char		IsStreamed[MAX_PLAYERS];// 0x2BB
-	unsigned char		unk_6[0x1588];			// 0x4AF
-	unsigned short		WeaponSkill[11];		// 0x1A37
-	unsigned char		unk_7[0x5];				// 0x1A4D
-	unsigned long		Skin;					// 0x1A52
-	unsigned char		unk_8[0x2F];			// 0x1A56
-	unsigned char		VehicleSeat;			// 0x1A85
-	unsigned short		VehicleId;				// 0x1A86
-	unsigned char		unk_9[0xC];				// 0x1A88
-	unsigned long		Interior;				// 0x1A94
+	unsigned char		unk_3[0xAD];			// 0xFC
+	unsigned long		AimSyncSendState;		// 0x1A9
+	unsigned char		unk_4[0x8];				// 0x1AD
+	unsigned char		State;					// 0x1B5
+	unsigned char		unk_5[0x39];			// 0x1B6
+	unsigned char		IsStreamed[MAX_PLAYERS];// 0x1EF
+	unsigned char		unk_6[0x1588];			// 0x3E3
+	unsigned short		WeaponSkill[11];		// 0x196B
+	unsigned char		unk_7[0x5];				// 0x1981
+	unsigned long		Skin;					// 0x1986
+	unsigned char		unk_8[0x2F];			// 0x198A
+	unsigned char		VehicleSeat;			// 0x19B9
+	unsigned short		VehicleId;				// 0x19BA
+	unsigned char		unk_9[0x3C];			// 0x198C
+	unsigned long		Interior;				// 0x19C8
 };
 
 #pragma pack(pop)
