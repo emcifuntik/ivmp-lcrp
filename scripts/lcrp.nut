@@ -23,7 +23,7 @@ MySQL.User <- "root";
 MySQL.Password <- "1232356";
 MySQL.Database <- "ivmp";
 MySQL.Handler <- 0;
-//#Определения цветов#//
+//#РћРїСЂРµРґРµР»РµРЅРёСЏ С†РІРµС‚РѕРІ#//
 local Color = { };
 Color.White <- 0xFFFFFFFF;
 Color.Black <- 0x000000AA;
@@ -35,7 +35,7 @@ Color.LightBlue <- 0x00FFFFFF;
 Color.Pink <- 0xFF00FFFF;
 Color.Orange <- 0xFF8000FF;
 Color.Green <- 0x00FF00FF;
-//#Система создания домов#//
+//#РЎРёСЃС‚РµРјР° СЃРѕР·РґР°РЅРёСЏ РґРѕРјРѕРІ#//
 local HouseName = array(MAX_PLAYERS, "");
 local HouseEnX = array(MAX_PLAYERS, 0.0);
 local HouseEnY = array(MAX_PLAYERS, 0.0);
@@ -44,7 +44,7 @@ local HouseExX = array(MAX_PLAYERS, 0.0);
 local HouseExY = array(MAX_PLAYERS, 0.0);
 local HouseExZ = array(MAX_PLAYERS, 0.0);
 local HousePrice = array(MAX_PLAYERS, 0);
-//#Система создания бизов#//
+//#РЎРёСЃС‚РµРјР° СЃРѕР·РґР°РЅРёСЏ Р±РёР·РѕРІ#//
 local BizName = array(MAX_PLAYERS, "");
 local BizEnX = array(MAX_PLAYERS, 0.0);
 local BizEnY = array(MAX_PLAYERS, 0.0);
@@ -76,23 +76,23 @@ local skins = [
 326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,
 341,342,343,344,345
 ];    
-//#Стритрейсеры#//
+//#РЎС‚СЂРёС‚СЂРµР№СЃРµСЂС‹#//
 local driftTime = array(MAX_PLAYERS,0);
 local driftN = array(MAX_PLAYERS, 0);
 local driftMoney = array(MAX_PLAYERS, 0);
-//#Оружие#//
+//#РћСЂСѓР¶РёРµ#//
 local wName = array(11, "");
 wName = [ "Grenade" , "Molotov" , "Pistol" , "Combat Pistol" , "Pump Shotgun" , "Combat Shotgun" , "Micro SMG" , "SMG" , "AK 47" , "M4A1" , "Combat Sniper" , "Sniper Rifle" ];
-//#Данные об игроке#//
+//#Р”Р°РЅРЅС‹Рµ РѕР± РёРіСЂРѕРєРµ#//
 local Player = array(MAX_PLAYERS, null);
 local PlayerInfo = { };
 const INVALID_PLAYER_ID = -1;
-//#Данные для запроса Y N#//
+//#Р”Р°РЅРЅС‹Рµ РґР»СЏ Р·Р°РїСЂРѕСЃР° Y N#//
 local Request = { };
 const FACTION_INVITE = 1;
-const FACTION_GIVERANK = 2; //новое
-const LICENSE = 3;//новое
-//#Система автовладения#//
+const FACTION_GIVERANK = 2; //РЅРѕРІРѕРµ
+const LICENSE = 3;//РЅРѕРІРѕРµ
+//#РЎРёСЃС‚РµРјР° Р°РІС‚РѕРІР»Р°РґРµРЅРёСЏ#//
 local Car = { };
 local VehicleData = array(MAX_CARS, -1);
 local car;
@@ -119,7 +119,7 @@ CarSpawn[2].ax <- 0.0;
 CarSpawn[2].ay <- 0.0;
 CarSpawn[2].az <- 270.0
 local CarBuyCP;
-//#Скины фракций#//
+//#РЎРєРёРЅС‹ С„СЂР°РєС†РёР№#//
 local Skins = [
 	[ 0 ],
 	[ 173, 174, 136, 133 ],
@@ -138,36 +138,36 @@ local Skins = [
 	[ 70, 71, 72, 73, 74, 208 ]
 ];
 			
-//#Ежечасный таймер#//
+//#Р•Р¶РµС‡Р°СЃРЅС‹Р№ С‚Р°Р№РјРµСЂ#//
 local Timer;
-//#Переменная класса домов#//
+//#РџРµСЂРµРјРµРЅРЅР°СЏ РєР»Р°СЃСЃР° РґРѕРјРѕРІ#//
 local Houses;
-//#Переменная класса бизов#//
+//#РџРµСЂРµРјРµРЅРЅР°СЏ РєР»Р°СЃСЃР° Р±РёР·РѕРІ#//
 local Biz;
-//#Фракции#//
-local factionName = array(16, "");//новое
-factionName = [ "Гражданский", "US Army", "Police Department", "Ambulance", "Fire Department", "Justice Ministry", "Department of Education", "Department of Homeland Security", "Department of the Interior", "La Cosa Nostra", "Yakuza", "Triad", "Crips", "MS-13", "Jamaican Posse", "Bikers" ]; //новое
-//#Переменные игрока#//
+//#Р¤СЂР°РєС†РёРё#//
+local factionName = array(16, "");//РЅРѕРІРѕРµ
+factionName = [ "Р“СЂР°Р¶РґР°РЅСЃРєРёР№", "US Army", "Police Department", "Ambulance", "Fire Department", "Justice Ministry", "Department of Education", "Department of Homeland Security", "Department of the Interior", "La Cosa Nostra", "Yakuza", "Triad", "Crips", "MS-13", "Jamaican Posse", "Bikers" ]; //РЅРѕРІРѕРµ
+//#РџРµСЂРµРјРµРЅРЅС‹Рµ РёРіСЂРѕРєР°#//
 local SkinChoose = array(MAX_PLAYERS, false);
-local CurrSkin = array(MAX_PLAYERS, 0);//текущий скин при перемотке
-//#Инициализация мода#//
+local CurrSkin = array(MAX_PLAYERS, 0);//С‚РµРєСѓС‰РёР№ СЃРєРёРЅ РїСЂРё РїРµСЂРµРјРѕС‚РєРµ
+//#РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РјРѕРґР°#//
 function onScriptInit()
 {	
     log("Liberty City RolePlay by Funtik");
-	log("Загружено моделей персонажей: "+skins.len());
+	log("Р—Р°РіСЂСѓР¶РµРЅРѕ РјРѕРґРµР»РµР№ РїРµСЂСЃРѕРЅР°Р¶РµР№: "+skins.len());
     MysqlConnection(true);
 	CreateBlips();
 	Houses = houses(MySQL.Handler);
 	Biz = biz(MySQL.Handler);
 	Houses.Load();
-	log("Дома загружены");
+	log("Р”РѕРјР° Р·Р°РіСЂСѓР¶РµРЅС‹");
     Biz.Load();
-	log("Бизнесы загружены");
+	log("Р‘РёР·РЅРµСЃС‹ Р·Р°РіСЂСѓР¶РµРЅС‹");
 	loadCars();
-	log("Личный транспорт загружен");
+	log("Р›РёС‡РЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚ Р·Р°РіСЂСѓР¶РµРЅ");
     local Date = date();
     for(local i = 0; i < 123; i++) loadClientResource("Car"+i+".jpg");
-	log("Изображения транспорта загружены");
+	log("РР·РѕР±СЂР°Р¶РµРЅРёСЏ С‚СЂР°РЅСЃРїРѕСЂС‚Р° Р·Р°РіСЂСѓР¶РµРЅС‹");
 	Timer = timer(oneHourTimer, 60*60*100, -1);
 	timer(onSecondTimer, 1000, -1);
     timer(onDriftTimer, 500, -1);
@@ -176,7 +176,7 @@ function onScriptInit()
     setMinuteDuration(60000);
     setDayOfWeek(Date["wday"]);
 	setWeather(random(1,9));
-	log("Настройки погоды, времени и даты установлены.");
+	log("РќР°СЃС‚СЂРѕР№РєРё РїРѕРіРѕРґС‹, РІСЂРµРјРµРЅРё Рё РґР°С‚С‹ СѓСЃС‚Р°РЅРѕРІР»РµРЅС‹.");
 	CarBuyCP = createCheckpoint ( 6, 80.416382, 801.363831, 14.0, 60.416382, 700.363831, -1400.0, 0.25);
     return true;
 }
@@ -194,17 +194,17 @@ addEvent("scriptExit", onScriptExit);
 
 function onPlayerAuth(playerID, playerName, playerIP, playerSerial, bHasModdedGameFiles)
 {
-	log("Игрок " + playerName + "[HID: " + playerSerial + ", IP : " + playerIP + "] авторизируется на сервере.");
+	log("РРіСЂРѕРє " + playerName + "[HID: " + playerSerial + ", IP : " + playerIP + "] Р°РІС‚РѕСЂРёР·РёСЂСѓРµС‚СЃСЏ РЅР° СЃРµСЂРІРµСЂРµ.");
 	if(bHasModdedGameFiles) 
 	{
-		log("Игрок " + playerName + "[HID: " + playerSerial + ", IP : " + playerIP + "] не прошёл авторизацию. Причина: Игровые файлы модифицированы.");
+		log("РРіСЂРѕРє " + playerName + "[HID: " + playerSerial + ", IP : " + playerIP + "] РЅРµ РїСЂРѕС€С‘Р» Р°РІС‚РѕСЂРёР·Р°С†РёСЋ. РџСЂРёС‡РёРЅР°: РРіСЂРѕРІС‹Рµ С„Р°Р№Р»С‹ РјРѕРґРёС„РёС†РёСЂРѕРІР°РЅС‹.");
 		kickPlayer(playerID);
 	}
 	return 1;
 }
 addEvent("playerAuth", onPlayerAuth);
 
-//#Подключение игрока, обнуление переменных после предыдущего игрока#//
+//#РџРѕРґРєР»СЋС‡РµРЅРёРµ РёРіСЂРѕРєР°, РѕР±РЅСѓР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С… РїРѕСЃР»Рµ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РёРіСЂРѕРєР°#//
 function onPlayerConnect( playerid, name)
 {
 	setPlayerSpawnLocation(playerid, -1076.912231, -432.198792, 1.971985, 186.684204);
@@ -260,10 +260,10 @@ function onYesnoRequest( playerid, yn )
 					Player[playerid].Info.Faction.Number = Request[playerid].Params;
 					Player[playerid].Info.Faction.Rank = 1;
 					Player[playerid].Info.Faction.Skill = 0;
-					msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" принял ваше предложение на вступление во фракцию.");
-					msg(playerid, ALERT, "Вы стали членом фракции "+factionName[Player[playerid].Info.Faction.Number]);
-					msg(playerid, ADVICE, "Чтобы выбрать подходящий скин используйте стрелки (<-, ->).");
-					msg(playerid, ADVICE, "Чтобы окончить выбор нажмите 'Пробел'.");
+					msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" РїСЂРёРЅСЏР» РІР°С€Рµ РїСЂРµРґР»РѕР¶РµРЅРёРµ РЅР° РІСЃС‚СѓРїР»РµРЅРёРµ РІРѕ С„СЂР°РєС†РёСЋ.");
+					msg(playerid, ALERT, "Р’С‹ СЃС‚Р°Р»Рё С‡Р»РµРЅРѕРј С„СЂР°РєС†РёРё "+factionName[Player[playerid].Info.Faction.Number]);
+					msg(playerid, ADVICE, "Р§С‚РѕР±С‹ РІС‹Р±СЂР°С‚СЊ РїРѕРґС…РѕРґСЏС‰РёР№ СЃРєРёРЅ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ СЃС‚СЂРµР»РєРё (<-, ->).");
+					msg(playerid, ADVICE, "Р§С‚РѕР±С‹ РѕРєРѕРЅС‡РёС‚СЊ РІС‹Р±РѕСЂ РЅР°Р¶РјРёС‚Рµ 'РџСЂРѕР±РµР»'.");
 					SkinChoose[playerid] <- true;
 					Request[playerid].ReqType = 0;
 					Request[playerid].Params = 0;
@@ -272,29 +272,29 @@ function onYesnoRequest( playerid, yn )
 				}
 				else
 				{
-					msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" отказался от вашего предложения на вступлению во фракцию.");
+					msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" РѕС‚РєР°Р·Р°Р»СЃСЏ РѕС‚ РІР°С€РµРіРѕ РїСЂРµРґР»РѕР¶РµРЅРёСЏ РЅР° РІСЃС‚СѓРїР»РµРЅРёСЋ РІРѕ С„СЂР°РєС†РёСЋ.");
 					Request[playerid].ReqType = 0;
 					Request[playerid].Params = 0;
 					Request[playerid].SecondFace = 0;
 					return true;
 				}
 			break;
-			case FACTION_GIVERANK: //новое
+			case FACTION_GIVERANK: //РЅРѕРІРѕРµ
                 if(yn)
                 {
                     Player[playerid].Info.Faction.Rank = Request[playerid].Params;
-                    msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" принял ваше предложение на повышение ранга.");
-                    msg(playerid, ALERT, "Вас повысили до " + Request[playerid].Params);
+                    msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" РїСЂРёРЅСЏР» РІР°С€Рµ РїСЂРµРґР»РѕР¶РµРЅРёРµ РЅР° РїРѕРІС‹С€РµРЅРёРµ СЂР°РЅРіР°.");
+                    msg(playerid, ALERT, "Р’Р°СЃ РїРѕРІС‹СЃРёР»Рё РґРѕ " + Request[playerid].Params);
                 }
                 else
                 {
-                    msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" отказался от вашего предложения на повышение ранга.");
+                    msg(Request[playerid].SecondFace, ALERT, getPlayerName(playerid)+" РѕС‚РєР°Р·Р°Р»СЃСЏ РѕС‚ РІР°С€РµРіРѕ РїСЂРµРґР»РѕР¶РµРЅРёСЏ РЅР° РїРѕРІС‹С€РµРЅРёРµ СЂР°РЅРіР°.");
                     Request[playerid].ReqType = 0;
                     Request[playerid].Params = 0;
                     Request[playerid].SecondFace = 0;
                 }
             break;
-			case LICENSE://новое
+			case LICENSE://РЅРѕРІРѕРµ
 			{
 				if(yn)
 				{
@@ -304,8 +304,8 @@ function onYesnoRequest( playerid, yn )
 							
 							Player[playerid].License.Car = 1;
 							givePlayerMoney(playerid,-1000);
-							msg(playerid,ALERT,"Вы приняли предложение");
-							msg(Request[playerid].SecondFace,ALERT,"Игрок принял предложение");
+							msg(playerid,ALERT,"Р’С‹ РїСЂРёРЅСЏР»Рё РїСЂРµРґР»РѕР¶РµРЅРёРµ");
+							msg(Request[playerid].SecondFace,ALERT,"РРіСЂРѕРє РїСЂРёРЅСЏР» РїСЂРµРґР»РѕР¶РµРЅРёРµ");
 							Request[playerid].ReqType = 0;
 							Request[playerid].Params = 0;
 							Request[playerid].SecondFace = 0;
@@ -313,8 +313,8 @@ function onYesnoRequest( playerid, yn )
 						case "fly":
 							Player[playerid].License.Fly = 1;
 							givePlayerMoney(playerid,-15000);
-							msg(playerid,ALERT,"Вы приняли предложение");
-							msg(Request[playerid].SecondFace,ALERT,"Игрок принял предложение");
+							msg(playerid,ALERT,"Р’С‹ РїСЂРёРЅСЏР»Рё РїСЂРµРґР»РѕР¶РµРЅРёРµ");
+							msg(Request[playerid].SecondFace,ALERT,"РРіСЂРѕРє РїСЂРёРЅСЏР» РїСЂРµРґР»РѕР¶РµРЅРёРµ");
 							Request[playerid].ReqType = 0;
 							Request[playerid].Params = 0;
 							Request[playerid].SecondFace = 0;
@@ -322,8 +322,8 @@ function onYesnoRequest( playerid, yn )
 						case "water":
 							Player[playerid].License.Water = 1;
 							givePlayerMoney(playerid,-5000);
-							msg(playerid,ALERT,"Вы приняли предложение");
-							msg(Request[playerid].SecondFace,ALERT,"Игрок принял предложение");
+							msg(playerid,ALERT,"Р’С‹ РїСЂРёРЅСЏР»Рё РїСЂРµРґР»РѕР¶РµРЅРёРµ");
+							msg(Request[playerid].SecondFace,ALERT,"РРіСЂРѕРє РїСЂРёРЅСЏР» РїСЂРµРґР»РѕР¶РµРЅРёРµ");
 							Request[playerid].ReqType = 0;
 							Request[playerid].Params = 0;
 							Request[playerid].SecondFace = 0;
@@ -331,8 +331,8 @@ function onYesnoRequest( playerid, yn )
 						case "motorcycle":
 							Player[playerid].License.Motorcycle = 1;
 							givePlayerMoney(playerid,-5000);
-							msg(playerid,ALERT,"Вы приняли предложение");
-							msg(Request[playerid].SecondFace,ALERT,"Игрок принял предложение");
+							msg(playerid,ALERT,"Р’С‹ РїСЂРёРЅСЏР»Рё РїСЂРµРґР»РѕР¶РµРЅРёРµ");
+							msg(Request[playerid].SecondFace,ALERT,"РРіСЂРѕРє РїСЂРёРЅСЏР» РїСЂРµРґР»РѕР¶РµРЅРёРµ");
 							Request[playerid].ReqType = 0;
 							Request[playerid].Params = 0;
 							Request[playerid].SecondFace = 0;
@@ -341,8 +341,8 @@ function onYesnoRequest( playerid, yn )
 				}
 				else
 				{
-					msg(playerid,ERROR,"Вы отказались от предложенной сделки");
-					msg(Request[playerid].SecondFace,ERROR,"Игрок отказался от предложенной сделки");
+					msg(playerid,ERROR,"Р’С‹ РѕС‚РєР°Р·Р°Р»РёСЃСЊ РѕС‚ РїСЂРµРґР»РѕР¶РµРЅРЅРѕР№ СЃРґРµР»РєРё");
+					msg(Request[playerid].SecondFace,ERROR,"РРіСЂРѕРє РѕС‚РєР°Р·Р°Р»СЃСЏ РѕС‚ РїСЂРµРґР»РѕР¶РµРЅРЅРѕР№ СЃРґРµР»РєРё");
 					Request[playerid].ReqType = 0;
 					Request[playerid].Params = 0;
 					Request[playerid].SecondFace = 0;
@@ -382,28 +382,28 @@ function onVehicleEntryRequest(playerid, vehicleid, seatid)
 			case "car":
 				if(Player[playerid].License.Car == 0 || Player[playerid].License.Car > 1)
 				{
-					msg(playerid, ALERT, "Вы не имеете лицензию на это транспортное средство");
+					msg(playerid, ALERT, "Р’С‹ РЅРµ РёРјРµРµС‚Рµ Р»РёС†РµРЅР·РёСЋ РЅР° СЌС‚Рѕ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРµ СЃСЂРµРґСЃС‚РІРѕ");
 					return false;
 				}
 				break;
 			case "motorcycle":
 				if(Player[playerid].License.Motorcycle == 0 || Player[playerid].License.Motorcycle > 1)
 				{
-					msg(playerid, ALERT, "Вы не имеете лицензию на это транспортное средство");
+					msg(playerid, ALERT, "Р’С‹ РЅРµ РёРјРµРµС‚Рµ Р»РёС†РµРЅР·РёСЋ РЅР° СЌС‚Рѕ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРµ СЃСЂРµРґСЃС‚РІРѕ");
 					return false;
 				}
 				break;
 			case "fly":
 				if(Player[playerid].License.Fly == 0 || Player[playerid].License.Fly > 1)
 				{
-					msg(playerid, ALERT, "Вы не имеете лицензию на это транспортное средство");
+					msg(playerid, ALERT, "Р’С‹ РЅРµ РёРјРµРµС‚Рµ Р»РёС†РµРЅР·РёСЋ РЅР° СЌС‚Рѕ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРµ СЃСЂРµРґСЃС‚РІРѕ");
 					return false;
 				}
 				break;
 			case "water":
 				if(Player[playerid].License.Water == 0 || Player[playerid].License.Water > 1)
 				{
-					msg(playerid, ALERT, "Вы не имеете лицензию на это транспортное средство");
+					msg(playerid, ALERT, "Р’С‹ РЅРµ РёРјРµРµС‚Рµ Р»РёС†РµРЅР·РёСЋ РЅР° СЌС‚Рѕ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРµ СЃСЂРµРґСЃС‚РІРѕ");
 					return false;
 				}
 				break;
@@ -422,7 +422,7 @@ function onPlayerCommand(playerid, command)
 	switch(cmd[0])
 	{
 		case "/help":
-			sendPlayerMessage(playerid, "Помощь по командам сервера", colorGreen);
+			sendPlayerMessage(playerid, "РџРѕРјРѕС‰СЊ РїРѕ РєРѕРјР°РЅРґР°Рј СЃРµСЂРІРµСЂР°", colorGreen);
 			break;
 		case "/restart":
 			reloadScript("lcrp.nut");
@@ -436,29 +436,29 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 3)
 			{
-				msg(playerid, ADVICE, "/weap [ID Оружия (1-18)] [Количество патронов (1-999)]");
+				msg(playerid, ADVICE, "/weap [ID РћСЂСѓР¶РёСЏ (1-18)] [РљРѕР»РёС‡РµСЃС‚РІРѕ РїР°С‚СЂРѕРЅРѕРІ (1-999)]");
 				return true;
 			}
 			if(!isNumeric(cmd[1]))
 			{
-				msg(playerid, ADVICE, "/weap [ID Оружия [FF0000AA](1-18)[AAAAAAAA]] [Количество патронов (1-999)]");
+				msg(playerid, ADVICE, "/weap [ID РћСЂСѓР¶РёСЏ [FF0000AA](1-18)[AAAAAAAA]] [РљРѕР»РёС‡РµСЃС‚РІРѕ РїР°С‚СЂРѕРЅРѕРІ (1-999)]");
 				return true;
 			}
 			if(!isNumeric(cmd[2]))
 			{
-				msg(playerid, ADVICE, "/weap [ID Оружия (1-18)] [Количество патронов [FF0000AA](1-999)[AAAAAAAA]]");
+				msg(playerid, ADVICE, "/weap [ID РћСЂСѓР¶РёСЏ (1-18)] [РљРѕР»РёС‡РµСЃС‚РІРѕ РїР°С‚СЂРѕРЅРѕРІ [FF0000AA](1-999)[AAAAAAAA]]");
 				return true;
 			}
 			local weapon = cmd[1].tointeger();
 			if(weapon < 1 || weapon > 18)
 			{
-				msg(playerid, ADVICE, "/weap [ID Оружия [FF0000AA](1-18)[AAAAAAAA]] [Количество патронов (1-999)]");
+				msg(playerid, ADVICE, "/weap [ID РћСЂСѓР¶РёСЏ [FF0000AA](1-18)[AAAAAAAA]] [РљРѕР»РёС‡РµСЃС‚РІРѕ РїР°С‚СЂРѕРЅРѕРІ (1-999)]");
 				return true;
 			}
 			local ammo = cmd[2].tointeger();
 			if(ammo < 1 || ammo > 999)
 			{
-				msg(playerid, ADVICE, "/weap [ID Оружия (1-18)] [Количество патронов [FF0000AA](1-999)[AAAAAAAA]]");
+				msg(playerid, ADVICE, "/weap [ID РћСЂСѓР¶РёСЏ (1-18)] [РљРѕР»РёС‡РµСЃС‚РІРѕ РїР°С‚СЂРѕРЅРѕРІ [FF0000AA](1-999)[AAAAAAAA]]");
 				return true;
 			}
 			givePlayerWeapon(playerid, weapon, ammo);
@@ -471,19 +471,19 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 2)
 			{
-				msg(playerid, ADVICE, "/goto [ID Игрока или часть имени (A-Z,a-z | 1-32)]");
+				msg(playerid, ADVICE, "/goto [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)]");
 				return true;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == -1)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return true;
 			}
 			local pos = getPlayerCoordinates(giveplayerid);
 			setPlayerCoordinates(playerid, pos[0], pos[1], pos[2]);
 			break;
-		//#Команды администрации#//
+		//#РљРѕРјР°РЅРґС‹ Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё#//
 		case "/heal":
 			if(Player[playerid].Info.Admin < 5)
 			{
@@ -501,29 +501,29 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 3)
 			{
-				msg(playerid, ADVICE, "/makeadmin [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Уровень администратора (0-5)]");
+				msg(playerid, ADVICE, "/makeadmin [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [РЈСЂРѕРІРµРЅСЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° (0-5)]");
 				return true;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == -1)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return true;
 			}
 			if(!isNumeric(cmd[2].tointeger()))
 			{
-				msg(playerid, ADVICE, "/makeadmin [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Уровень администратора [FF0000FF](0-5)[AAAAAAAA]]");
+				msg(playerid, ADVICE, "/makeadmin [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [РЈСЂРѕРІРµРЅСЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° [FF0000FF](0-5)[AAAAAAAA]]");
 				return true;
 			}
 			local level = cmd[2].tointeger();
 			if(level < 0 || level > 5)
 			{
-				msg(playerid, ADVICE, "/makeadmin [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Уровень администратора [FF0000FF](0-5)[AAAAAAAA]]");
+				msg(playerid, ADVICE, "/makeadmin [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [РЈСЂРѕРІРµРЅСЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° [FF0000FF](0-5)[AAAAAAAA]]");
 				return true;
 			}
 			Player[giveplayerid].Info.Admin = level;
-			msg(giveplayerid, ALERT, ((level == 0) ? (getPlayerName(playerid) + " снял вас с должности администратора.") : (getPlayerName(playerid) + " назначил вас на пост администратора "+level+"-го уровня.")));
-			msg(playerid, ALERT, "Уровень администрирования игрока "+getPlayerName(giveplayerid)+" успешно изменён.");
+			msg(giveplayerid, ALERT, ((level == 0) ? (getPlayerName(playerid) + " СЃРЅСЏР» РІР°СЃ СЃ РґРѕР»Р¶РЅРѕСЃС‚Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°.") : (getPlayerName(playerid) + " РЅР°Р·РЅР°С‡РёР» РІР°СЃ РЅР° РїРѕСЃС‚ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° "+level+"-РіРѕ СѓСЂРѕРІРЅСЏ.")));
+			msg(playerid, ALERT, "РЈСЂРѕРІРµРЅСЊ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёСЏ РёРіСЂРѕРєР° "+getPlayerName(giveplayerid)+" СѓСЃРїРµС€РЅРѕ РёР·РјРµРЅС‘РЅ.");
 			break;
 		case "/ban":
 			if(Player[playerid].Info.Admin < 5)
@@ -533,29 +533,29 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 3)
 			{
-				msg(playerid, ADVICE, "/ban [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Количество дней (1-65535)] [Причина (А-Я,а-я,A-Z,a-z | 0-9)]");
+				msg(playerid, ADVICE, "/ban [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [РљРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ (1-65535)] [РџСЂРёС‡РёРЅР° (Рђ-РЇ,Р°-СЏ,A-Z,a-z | 0-9)]");
 				return true;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == -1)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return true;
 			}
 			if(!isNumeric(cmd[2].tointeger()))
 			{
-				msg(playerid, ADVICE, "/ban [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Количество дней [FF0000FF](1-65535)[AAAAAAAA]] [Причина (А-Я,а-я,A-Z,a-z | 0-9)]");
+				msg(playerid, ADVICE, "/ban [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [РљРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ [FF0000FF](1-65535)[AAAAAAAA]] [РџСЂРёС‡РёРЅР° (Рђ-РЇ,Р°-СЏ,A-Z,a-z | 0-9)]");
 				return true;
 			}
 			local days = cmd[2].tointeger();
 			if(days < 1 || days > 65535)
 			{
-				msg(playerid, ADVICE, "/ban [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Количество дней [FF0000FF](1-65535)[AAAAAAAA]] [Причина (А-Я,а-я,A-Z,a-z | 0-9)]");
+				msg(playerid, ADVICE, "/ban [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [РљРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ [FF0000FF](1-65535)[AAAAAAAA]] [РџСЂРёС‡РёРЅР° (Рђ-РЇ,Р°-СЏ,A-Z,a-z | 0-9)]");
 				return true;
 			}
 			local reason = command.slice(cmd[0].len() + cmd[1].len() + cmd[2].len() + 3);
-			msg(giveplayerid, ALERT, "Ваш аккаунт был заблокирован администратором "+getPlayerName(playerid)+" на "+days+" дней. Причина: "+reason);
-			sendMessageToAdmin("Аккаунт "+getPlayerName(giveplayerid)+" был заблокирован на "+days+" дней. Причина: "+reason, 1);
+			msg(giveplayerid, ALERT, "Р’Р°С€ Р°РєРєР°СѓРЅС‚ Р±С‹Р» Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј "+getPlayerName(playerid)+" РЅР° "+days+" РґРЅРµР№. РџСЂРёС‡РёРЅР°: "+reason);
+			sendMessageToAdmin("РђРєРєР°СѓРЅС‚ "+getPlayerName(giveplayerid)+" Р±С‹Р» Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ РЅР° "+days+" РґРЅРµР№. РџСЂРёС‡РёРЅР°: "+reason, 1);
 			Player[giveplayerid].Ban(days);
 			break;
 		case "/unban":
@@ -566,14 +566,14 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 2)
 			{
-				msg(playerid, ADVICE, "/unban [Имя игрока (A-Z,a-z,_)]");
+				msg(playerid, ADVICE, "/unban [РРјСЏ РёРіСЂРѕРєР° (A-Z,a-z,_)]");
 				return true;
 			}
 			local name = mysql_escape_string(MySQL.Handler, cmd[1]);
 			local result = mysql_query(MySQL.Handler, "UPDATE `users` SET `Banned`='0' WHERE `Name`='"+name+"' AND `Banned`<>'0' LIMIT 1;");
 			local num = mysql_affected_rows(MySQL.Handler);
-			if(num != 0) sendMessageToAdmins("Аккаунт игрока "+name+" был разблокирован.", 3);
-			else msg(playerid, ERROR, "Аккаунт "+name+" не найден или не забанен.", 1);
+			if(num != 0) sendMessageToAdmins("РђРєРєР°СѓРЅС‚ РёРіСЂРѕРєР° "+name+" Р±С‹Р» СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅ.", 3);
+			else msg(playerid, ERROR, "РђРєРєР°СѓРЅС‚ "+name+" РЅРµ РЅР°Р№РґРµРЅ РёР»Рё РЅРµ Р·Р°Р±Р°РЅРµРЅ.", 1);
 			break;
 		case "/makeleader":
 			if(Player[playerid].Info.Admin < 5)
@@ -583,24 +583,24 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 3)
 			{
-				msg(playerid, ADVICE, "/makeleader [ID Игрока или часть имени (A-Z,a-z | 1-32)] [ID Фракции (0-14)]");
+				msg(playerid, ADVICE, "/makeleader [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [ID Р¤СЂР°РєС†РёРё (0-14)]");
 				return true;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == -1)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return true;
 			}
 			if(!isNumeric(cmd[2].tointeger()))
 			{
-				msg(playerid, ADVICE, "/makeleader [ID Игрока или часть имени (A-Z,a-z | 1-32)] [ID Фракции [FF0000FF](0-14)[AAAAAAAA]]");
+				msg(playerid, ADVICE, "/makeleader [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [ID Р¤СЂР°РєС†РёРё [FF0000FF](0-14)[AAAAAAAA]]");
 				return true;
 			}
 			local faction = cmd[2].tointeger();
 			if(faction < 0 || faction > 14)
 			{
-				msg(playerid, ADVICE, "/makeleader [ID Игрока или часть имени (A-Z,a-z | 1-32)] [ID Фракции [FF0000FF](0-14)[AAAAAAAA]]");
+				msg(playerid, ADVICE, "/makeleader [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [ID Р¤СЂР°РєС†РёРё [FF0000FF](0-14)[AAAAAAAA]]");
 				return true;
 			}
 			else if(faction == 0)
@@ -608,7 +608,7 @@ function onPlayerCommand(playerid, command)
 				Player[giveplayerid].Info.Faction.Number = 0;
 				Player[giveplayerid].Info.Faction.Rank = 0;
 				Player[giveplayerid].Info.Faction.Skill = 0;
-				msg(giveplayerid, ALERT, "Вы были лишены лидерства над фракцией.");
+				msg(giveplayerid, ALERT, "Р’С‹ Р±С‹Р»Рё Р»РёС€РµРЅС‹ Р»РёРґРµСЂСЃС‚РІР° РЅР°Рґ С„СЂР°РєС†РёРµР№.");
 				return true;
 			}
 			else
@@ -616,7 +616,7 @@ function onPlayerCommand(playerid, command)
 				Player[giveplayerid].Info.Faction.Number = cmd[2].tointeger();
 				Player[giveplayerid].Info.Faction.Rank = 12;
 				Player[giveplayerid].Info.Faction.Skill = 0;
-				msg(giveplayerid, ALERT, "Вам было передано лидерство над фракцией "+factionName[faction]+".");
+				msg(giveplayerid, ALERT, "Р’Р°Рј Р±С‹Р»Рѕ РїРµСЂРµРґР°РЅРѕ Р»РёРґРµСЂСЃС‚РІРѕ РЅР°Рґ С„СЂР°РєС†РёРµР№ "+factionName[faction]+".");
 				return true;
 			}
 			break;
@@ -628,37 +628,37 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 2)
 			{
-				msg(playerid, ADVICE, "/invite [ID Игрока или часть имени (A-Z,a-z | 1-32)]");
+				msg(playerid, ADVICE, "/invite [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)]");
 				return true;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == INVALID_PLAYER_ID)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return true;
 			}
 			if(giveplayerid == playerid)
 			{
-				msg(playerid, ERROR, "Вы не можете принять во фракцию самого себя.");
+				msg(playerid, ERROR, "Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїСЂРёРЅСЏС‚СЊ РІРѕ С„СЂР°РєС†РёСЋ СЃР°РјРѕРіРѕ СЃРµР±СЏ.");
 				return true;
 			}
 			if(Player[giveplayerid].Info.Faction.Number != 0)
 			{
-				msg(playerid, ERROR, "Игрок уже является членом фракции.");
+				msg(playerid, ERROR, "РРіСЂРѕРє СѓР¶Рµ СЏРІР»СЏРµС‚СЃСЏ С‡Р»РµРЅРѕРј С„СЂР°РєС†РёРё.");
 				return true;
 			}
 			if(Player[giveplayerid].Info.Job.Number != 0)
 			{
-				msg(playerid, ERROR, "У игрока есть работа.");
+				msg(playerid, ERROR, "РЈ РёРіСЂРѕРєР° РµСЃС‚СЊ СЂР°Р±РѕС‚Р°.");
 				return true;
 			}
 			Request[giveplayerid].ReqType = FACTION_INVITE;
 			Request[giveplayerid].Params = Player[playerid].Info.Faction.Number;
 			Request[giveplayerid].SecondFace = playerid;
-			msg(giveplayerid, ALERT, getPlayerName(playerid)+" приглашает вас вступить во фракцию "+factionName[Player[playerid].Info.Faction.Number]+". Для вступления нажмите Y. N - отказ.");
+			msg(giveplayerid, ALERT, getPlayerName(playerid)+" РїСЂРёРіР»Р°С€Р°РµС‚ РІР°СЃ РІСЃС‚СѓРїРёС‚СЊ РІРѕ С„СЂР°РєС†РёСЋ "+factionName[Player[playerid].Info.Faction.Number]+". Р”Р»СЏ РІСЃС‚СѓРїР»РµРЅРёСЏ РЅР°Р¶РјРёС‚Рµ Y. N - РѕС‚РєР°Р·.");
 			return true;
 			break;
-		case "/giverank": //новое
+		case "/giverank": //РЅРѕРІРѕРµ
 			if(Player[playerid].Info.Faction.Rank < 11)
 			{
 				haveNoPermissions(playerid);
@@ -666,23 +666,23 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 3)
 			{
-				msg(playerid, ADVICE, "/giverank [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Ранг игрока]");
+				msg(playerid, ADVICE, "/giverank [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [Р Р°РЅРі РёРіСЂРѕРєР°]");
 				return true;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == INVALID_PLAYER_ID)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return true;
 			}
 			if(giveplayerid == playerid)
 			{
-				msg(playerid, ERROR, "Вы не можете повысить самого себя.");
+				msg(playerid, ERROR, "Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРІС‹СЃРёС‚СЊ СЃР°РјРѕРіРѕ СЃРµР±СЏ.");
 				return true;
 			}
 			if(Player[playerid].Info.Faction.Rank < Player[giveplayerid].Info.Faction.Rank)
 			{
-				msg(playerid, ERROR, "Вы не имеете право изменять ранг персонажу, чей ранг выше вашего.");
+				msg(playerid, ERROR, "Р’С‹ РЅРµ РёРјРµРµС‚Рµ РїСЂР°РІРѕ РёР·РјРµРЅСЏС‚СЊ СЂР°РЅРі РїРµСЂСЃРѕРЅР°Р¶Сѓ, С‡РµР№ СЂР°РЅРі РІС‹С€Рµ РІР°С€РµРіРѕ.");
 				return true;
 			}
 			if(Player[giveplayerid].Info.Faction.Rank <= cmd[2])
@@ -694,12 +694,12 @@ function onPlayerCommand(playerid, command)
 			else
 			{
 				Player[giveplayerid].Info.Faction.Rank = cmd[2];
-				msg(giveplayerid, ALERT, getPlayerName(playerid) + " понизил вас до " + cmd[2] + " ранга.");
+				msg(giveplayerid, ALERT, getPlayerName(playerid) + " РїРѕРЅРёР·РёР» РІР°СЃ РґРѕ " + cmd[2] + " СЂР°РЅРіР°.");
 			}
-			msg(giveplayerid, ALERT, getPlayerName(playerid) + " предлагает вам повышение до" + cmd[2] + " ранга. Для принятия нажмите Y. N - отказ.");
+			msg(giveplayerid, ALERT, getPlayerName(playerid) + " РїСЂРµРґР»Р°РіР°РµС‚ РІР°Рј РїРѕРІС‹С€РµРЅРёРµ РґРѕ" + cmd[2] + " СЂР°РЅРіР°. Р”Р»СЏ РїСЂРёРЅСЏС‚РёСЏ РЅР°Р¶РјРёС‚Рµ Y. N - РѕС‚РєР°Р·.");
 			return true;
 			break;
-		case "/exclude": //новое
+		case "/exclude": //РЅРѕРІРѕРµ
 			if(Player[playerid].Info.Faction.Rank < 11)
 			{
 				haveNoPermissions(playerid);
@@ -707,38 +707,38 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() != 2)
 			{
-				msg(playerid, ADVICE, "/exclude [ID Игрока или часть имени (A-Z,a-z | 1-32)]");
+				msg(playerid, ADVICE, "/exclude [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)]");
 				return true;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == INVALID_PLAYER_ID)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return true;
 			}
 			if(giveplayerid == playerid)
 			{
-				msg(playerid, ERROR, "Вы не можете исключить самого себя.");
+				msg(playerid, ERROR, "Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РёСЃРєР»СЋС‡РёС‚СЊ СЃР°РјРѕРіРѕ СЃРµР±СЏ.");
 				return true;
 			}
 			if(Player[giveplayerid].Info.Faction.Number == 0)
 			{
-				msg(playerid, ERROR, "Игрок не состоит в какой либо организации.");
+				msg(playerid, ERROR, "РРіСЂРѕРє РЅРµ СЃРѕСЃС‚РѕРёС‚ РІ РєР°РєРѕР№ Р»РёР±Рѕ РѕСЂРіР°РЅРёР·Р°С†РёРё.");
 				return true;
 			}
 			if(Player[giveplayerid].Info.Faction.Number != Player[playerid].Info.Faction.Number)
 			{
-				msg(playerid, ERROR, "Игрок находится не под вашим руководством");
+				msg(playerid, ERROR, "РРіСЂРѕРє РЅР°С…РѕРґРёС‚СЃСЏ РЅРµ РїРѕРґ РІР°С€РёРј СЂСѓРєРѕРІРѕРґСЃС‚РІРѕРј");
 				return true;
 			}
 			if(Player[giveplayerid].Info.Faction.Rank > Player[playerid].Info.Faction.Rank)
 			{
-				msg(playerid, ERROR, "Этот игрок выше вас по званию");
+				msg(playerid, ERROR, "Р­С‚РѕС‚ РёРіСЂРѕРє РІС‹С€Рµ РІР°СЃ РїРѕ Р·РІР°РЅРёСЋ");
 				return true;
 			}
 			Player[giveplayerid].Info.Faction.Number = 0;
-			msg(giveplayerid, ALERT, getPlayerName(playerid) + " исключил вас из организации.");
-			msg(playerid, ALERT, "Вы исключили " + getPlayerName(giveplayerid) + "-а из своей организации.");
+			msg(giveplayerid, ALERT, getPlayerName(playerid) + " РёСЃРєР»СЋС‡РёР» РІР°СЃ РёР· РѕСЂРіР°РЅРёР·Р°С†РёРё.");
+			msg(playerid, ALERT, "Р’С‹ РёСЃРєР»СЋС‡РёР»Рё " + getPlayerName(giveplayerid) + "-Р° РёР· СЃРІРѕРµР№ РѕСЂРіР°РЅРёР·Р°С†РёРё.");
 			return true;
 			break;
 		case "/veh":
@@ -751,13 +751,13 @@ function onPlayerCommand(playerid, command)
 			{
 				if(!isNumeric(cmd[1]))
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто [FF0000FF](0-123)[AAAAAAAA]]");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ [FF0000FF](0-123)[AAAAAAAA]]");
 					return true;
 				}
 				local model = cmd[1].tointeger();
 				if(model < 0 || model > 123)
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто [FF0000FF](0-123)[AAAAAAAA]]");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ [FF0000FF](0-123)[AAAAAAAA]]");
 					return true;
 				}
 				local pos;
@@ -768,64 +768,64 @@ function onPlayerCommand(playerid, command)
 				if(veh != INVALID_VEHICLE_ID)
 				{
 					warpPlayerIntoVehicle(playerid, veh);
-					msg(playerid, ALERT, getVehicleName(model) + " был(а) создана на вашей позиции.");
+					msg(playerid, ALERT, getVehicleName(model) + " Р±С‹Р»(Р°) СЃРѕР·РґР°РЅР° РЅР° РІР°С€РµР№ РїРѕР·РёС†РёРё.");
 				}
 			}
 			else if(cmd.len() == 6)
 			{
 				if(!isNumeric(cmd[1]))
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто [FF0000FF](0-123)[AAAAAAAA]] {[Цвет 1(0-137)] [Цвет 2(0-137)] [Цвет 3(0-137)] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ [FF0000FF](0-123)[AAAAAAAA]] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				local model = cmd[1].tointeger();
 				if(model < 0 || model > 123)
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто [FF0000FF](0-123)[AAAAAAAA]] {[Цвет 1(0-137)] [Цвет 2(0-137)] [Цвет 3(0-137)] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ [FF0000FF](0-123)[AAAAAAAA]] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				if(!isNumeric(cmd[2]))
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1[FF0000FF](0-137)[AAAAAAAA]] [Цвет 2(0-137)] [Цвет 3(0-137)] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1[FF0000FF](0-137)[AAAAAAAA]] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				local color1 = cmd[2].tointeger();
 				if(color1 < 0 || color1 > 123)
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1[FF0000FF](0-137)[AAAAAAAA]] [Цвет 2(0-137)] [Цвет 3(0-137)] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1[FF0000FF](0-137)[AAAAAAAA]] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				if(!isNumeric(cmd[3]))
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1(0-137)] [Цвет 2[FF0000FF](0-137)[AAAAAAAA]] [Цвет 3(0-137)] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2[FF0000FF](0-137)[AAAAAAAA]] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				local color2 = cmd[2].tointeger();
 				if(color2 < 0 || color2 > 123)
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1(0-137)] [Цвет 2[FF0000FF](0-137)[AAAAAAAA]] [Цвет 3(0-137)] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2[FF0000FF](0-137)[AAAAAAAA]] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				if(!isNumeric(cmd[4]))
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1(0-137)] [Цвет 2(0-137)] [Цвет 3[FF0000FF](0-137)[AAAAAAAA]] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3[FF0000FF](0-137)[AAAAAAAA]] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				local color3 = cmd[2].tointeger();
 				if(color3 < 0 || color3 > 123)
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1(0-137)] [Цвет 2(0-137)] [Цвет 3[FF0000FF](0-137)[AAAAAAAA]] [Цвет 4(0-137)]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3[FF0000FF](0-137)[AAAAAAAA]] [Р¦РІРµС‚ 4(0-137)]}");
 					return true;
 				}
 				if(!isNumeric(cmd[5]))
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1(0-137)] [Цвет 2(0-137)] [Цвет 3(0-137)] [Цвет 4[FF0000FF](0-137)[AAAAAAAA]]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4[FF0000FF](0-137)[AAAAAAAA]]}");
 					return true;
 				}
 				local color4 = cmd[2].tointeger();
 				if(color4 < 0 || color4 > 123)
 				{
-					msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1(0-137)] [Цвет 2(0-137)] [Цвет 3(0-137)] [Цвет 4[FF0000FF](0-137)[AAAAAAAA]]}");
+					msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4[FF0000FF](0-137)[AAAAAAAA]]}");
 					return true;
 				}
 				local pos;
@@ -838,19 +838,19 @@ function onPlayerCommand(playerid, command)
 				if(veh != INVALID_VEHICLE_ID)
 				{
 					//warpPlayerIntoVehicle(playerid, veh);
-					msg(playerid, ALERT, getVehicleName(model) + " был(а) создана на вашей позиции (ID " + veh + ").");
+					msg(playerid, ALERT, getVehicleName(model) + " Р±С‹Р»(Р°) СЃРѕР·РґР°РЅР° РЅР° РІР°С€РµР№ РїРѕР·РёС†РёРё (ID " + veh + ").");
 				}
 			}
 			else 
 			{
-				msg(playerid, ADVICE, "/veh [ID Авто (0-123)] {[Цвет 1(0-137)] [Цвет 2(0-137)] [Цвет 3(0-137)] [Цвет 4(0-137)]}");
+				msg(playerid, ADVICE, "/veh [ID РђРІС‚Рѕ (0-123)] {[Р¦РІРµС‚ 1(0-137)] [Р¦РІРµС‚ 2(0-137)] [Р¦РІРµС‚ 3(0-137)] [Р¦РІРµС‚ 4(0-137)]}");
 				return true;
 			}
 			break;
 		case "/house":
 			if(cmd.len() < 2)
 			{
-				msg(playerid, ADVICE, "/house [Действие (new|enter|exit|price|name|finish)]");
+				msg(playerid, ADVICE, "/house [Р”РµР№СЃС‚РІРёРµ (new|enter|exit|price|name|finish)]");
 				return true;
 			}
 			switch(cmd[1])
@@ -864,82 +864,82 @@ function onPlayerCommand(playerid, command)
 					HouseExY[playerid] = 0.0;
 					HouseExZ[playerid] = 0.0;
 					HousePrice[playerid] = 0;
-					msg(playerid, ALERT, "Данные о создании дома очищены.");
+					msg(playerid, ALERT, "Р”Р°РЅРЅС‹Рµ Рѕ СЃРѕР·РґР°РЅРёРё РґРѕРјР° РѕС‡РёС‰РµРЅС‹.");
 					break;
 				case "enter":
 					local coords = getPlayerCoordinates(playerid);
 					HouseEnX[playerid] = coords[0];
 					HouseEnY[playerid] = coords[1];
 					HouseEnZ[playerid] = coords[2];
-					msg(playerid, ALERT, "Координаты входа в дом сохранены.");
+					msg(playerid, ALERT, "РљРѕРѕСЂРґРёРЅР°С‚С‹ РІС…РѕРґР° РІ РґРѕРј СЃРѕС…СЂР°РЅРµРЅС‹.");
 					break;
 				case "exit":
 					local coords = getPlayerCoordinates(playerid);
 					HouseExX[playerid] = coords[0];
 					HouseExY[playerid] = coords[1];
 					HouseExZ[playerid] = coords[2];
-					msg(playerid, ALERT, "Координаты выхода в дом сохранены.");
+					msg(playerid, ALERT, "РљРѕРѕСЂРґРёРЅР°С‚С‹ РІС‹С…РѕРґР° РІ РґРѕРј СЃРѕС…СЂР°РЅРµРЅС‹.");
 					break;
 				case "price":
 					if(cmd.len() != 3)
 					{
-						msg(playerid, ADVICE, "/house price [Цена дома (1-3000000)$]");
+						msg(playerid, ADVICE, "/house price [Р¦РµРЅР° РґРѕРјР° (1-3000000)$]");
 						return 1;
 					}
 					if(!isNumeric(cmd[2]))
 					{
-						msg(playerid, ADVICE, "/house price [Цена дома [FF0000FF](1-3000000)$[AAAAAAAA]]");
+						msg(playerid, ADVICE, "/house price [Р¦РµРЅР° РґРѕРјР° [FF0000FF](1-3000000)$[AAAAAAAA]]");
 						return 1;
 					}
 					if(cmd[2].tointeger() < 1 || cmd[2].tointeger() > 3000000)
 					{
-						msg(playerid, ADVICE, "/house price [Цена дома [FF0000FF](1-3000000)$[AAAAAAAA]]");
+						msg(playerid, ADVICE, "/house price [Р¦РµРЅР° РґРѕРјР° [FF0000FF](1-3000000)$[AAAAAAAA]]");
 						return 1;
 					}
 					HousePrice[playerid] = cmd[2].tointeger();
-					msg(playerid, ALERT, "Цена дома сохранена.");
+					msg(playerid, ALERT, "Р¦РµРЅР° РґРѕРјР° СЃРѕС…СЂР°РЅРµРЅР°.");
 					break;
 				case "name":
 					if(cmd.len() < 3)
 					{
-						msg(playerid, ADVICE, "/house name [Имя дома (A-Z, a-z, А-Я, а-я, 0-9, _)]");
+						msg(playerid, ADVICE, "/house name [РРјСЏ РґРѕРјР° (A-Z, a-z, Рђ-РЇ, Р°-СЏ, 0-9, _)]");
 						return 1;
 					}
 					HouseName[playerid] = command.slice(cmd[0].len() + 1 + cmd[1].len() + 1);
-					msg(playerid, ALERT, "Название дома сохранено.");
+					msg(playerid, ALERT, "РќР°Р·РІР°РЅРёРµ РґРѕРјР° СЃРѕС…СЂР°РЅРµРЅРѕ.");
 					break;
 				case "finish":
 					log(HouseName[playerid]+"  "+HouseEnX[playerid].tostring()+"  "+HouseEnY[playerid].tostring()+"  "+HouseEnZ[playerid].tostring()+"  "+HouseExX[playerid].tostring()+"  "+HouseExY[playerid].tostring()+"  "+HouseExZ[playerid].tostring()+"  "+HousePrice[playerid].tostring());
 					Houses.CreateNew(HouseName[playerid], HouseEnX[playerid], HouseEnY[playerid], HouseEnZ[playerid], HouseExX[playerid], HouseExY[playerid], HouseExZ[playerid], HousePrice[playerid]);
-					msg(playerid, ALERT, "Дом был успешно создан.");
+					msg(playerid, ALERT, "Р”РѕРј Р±С‹Р» СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅ.");
 					break;
 				default:
-					msg(playerid, ERROR, "Неверный параметр.");
+					msg(playerid, ERROR, "РќРµРІРµСЂРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ.");
 					break;
 			}
 			break;
-		case "/biz"://TODO: Проверка данных и подсказки
+		case "/biz"://TODO: РџСЂРѕРІРµСЂРєР° РґР°РЅРЅС‹С… Рё РїРѕРґСЃРєР°Р·РєРё
 			local pos = getPlayerCoordinates(playerid);
 			Biz.CreateNew(cmd[1], cmd[2], pos[0], pos[1], pos[2], cmd[3]);
 			break;
-		case "/givelicense"://TODO: Сделать проверку вводимых данных
+		case "/givelicense"://TODO: РЎРґРµР»Р°С‚СЊ РїСЂРѕРІРµСЂРєСѓ РІРІРѕРґРёРјС‹С… РґР°РЅРЅС‹С…
 			if(cmd.len() != 3)
 			{
-				msg(playerid, ADVICE, "/givelicense [ID Игрока или часть имени (A-Z,a-z | 1-32)] [Наименование лицензии]");
-				msg(playerid, ADVICE, "Доступные лицензии: c(ar), m(otorcycle), f(ly), w(ater).");
+				msg(playerid, ADVICE, "/givelicense [ID РРіСЂРѕРєР° РёР»Рё С‡Р°СЃС‚СЊ РёРјРµРЅРё (A-Z,a-z | 1-32)] [РќР°РёРјРµРЅРѕРІР°РЅРёРµ Р»РёС†РµРЅР·РёРё]");
+				msg(playerid, ADVICE, "Р”РѕСЃС‚СѓРїРЅС‹Рµ Р»РёС†РµРЅР·РёРё: c(ar), m(otorcycle), f(ly), w(ater).");
 				return false;
 			}
 			giveplayerid = returnUser(cmd[1]);
 			if(giveplayerid == INVALID_PLAYER_ID)
 			{
-				msg(playerid, ERROR, "Игрока в данный момент нет онлайн и/или вы используете неверное имя/ID.");
+				msg(playerid, ERROR, "РРіСЂРѕРєР° РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРµС‚ РѕРЅР»Р°Р№РЅ Рё/РёР»Рё РІС‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ РЅРµРІРµСЂРЅРѕРµ РёРјСЏ/ID.");
 				return false;
 			}
 			local pos = getPlayerCoordinates(playerid);
 			local pos1 = getPlayerCoordinates(giveplayerid);
 			if(!isPointInCircle(pos[0],pos[1],pos1[0],pos[1],5.0))
 			{
-				msg(playerid, ERROR, "Этот игрок не рядом с вами");
+				msg(playerid, ERROR, "Р­С‚РѕС‚ РёРіСЂРѕРє РЅРµ СЂСЏРґРѕРј СЃ РІР°РјРё");
 				return false;
 			}
 			if(Player[playerid].Info.Admin < 5 && Player[playerid].Info.Faction.Number != 6)
@@ -956,12 +956,12 @@ function onPlayerCommand(playerid, command)
 						Request[giveplayerid].ReqType = LICENSE;
 						Request[giveplayerid].Params = "car";
 						Request[giveplayerid].SecondFace = playerid;
-						msg(giveplayerid, ALERT, getPlayerName(playerid)+" предложил сделать вам лицензию на авто за сумму в размере 1000$ Для принятия нажмите Y. N - отказ.");
-						msg(playerid,ALERT,"Вы предложили сделать лицензию на авто за 1000$");
+						msg(giveplayerid, ALERT, getPlayerName(playerid)+" РїСЂРµРґР»РѕР¶РёР» СЃРґРµР»Р°С‚СЊ РІР°Рј Р»РёС†РµРЅР·РёСЋ РЅР° Р°РІС‚Рѕ Р·Р° СЃСѓРјРјСѓ РІ СЂР°Р·РјРµСЂРµ 1000$ Р”Р»СЏ РїСЂРёРЅСЏС‚РёСЏ РЅР°Р¶РјРёС‚Рµ Y. N - РѕС‚РєР°Р·.");
+						msg(playerid,ALERT,"Р’С‹ РїСЂРµРґР»РѕР¶РёР»Рё СЃРґРµР»Р°С‚СЊ Р»РёС†РµРЅР·РёСЋ РЅР° Р°РІС‚Рѕ Р·Р° 1000$");
 					}
 					else
 					{
-						msg(playerid,ERROR,"Игрок имеет уже лицензию на авто");
+						msg(playerid,ERROR,"РРіСЂРѕРє РёРјРµРµС‚ СѓР¶Рµ Р»РёС†РµРЅР·РёСЋ РЅР° Р°РІС‚Рѕ");
 						return false;
 					}
 					break;
@@ -972,12 +972,12 @@ function onPlayerCommand(playerid, command)
 						Request[giveplayerid].ReqType = LICENSE;
 						Request[giveplayerid].Params = "motorcycle";
 						Request[giveplayerid].SecondFace = playerid;
-						msg(giveplayerid, ALERT, getPlayerName(playerid)+" предложил сделать вам лицензию на мотоциклы за сумму в размере 10000$ Для принятия нажмите Y. N - отказ.");
-						msg(playerid,ALERT,"Вы предложили сделать лицензию на мотоциклы за 10000$");
+						msg(giveplayerid, ALERT, getPlayerName(playerid)+" РїСЂРµРґР»РѕР¶РёР» СЃРґРµР»Р°С‚СЊ РІР°Рј Р»РёС†РµРЅР·РёСЋ РЅР° РјРѕС‚РѕС†РёРєР»С‹ Р·Р° СЃСѓРјРјСѓ РІ СЂР°Р·РјРµСЂРµ 10000$ Р”Р»СЏ РїСЂРёРЅСЏС‚РёСЏ РЅР°Р¶РјРёС‚Рµ Y. N - РѕС‚РєР°Р·.");
+						msg(playerid,ALERT,"Р’С‹ РїСЂРµРґР»РѕР¶РёР»Рё СЃРґРµР»Р°С‚СЊ Р»РёС†РµРЅР·РёСЋ РЅР° РјРѕС‚РѕС†РёРєР»С‹ Р·Р° 10000$");
 					}
 					else
 					{
-						msg(playerid,ERROR,"Игрок имеет уже лицензию на мотоциклы");
+						msg(playerid,ERROR,"РРіСЂРѕРє РёРјРµРµС‚ СѓР¶Рµ Р»РёС†РµРЅР·РёСЋ РЅР° РјРѕС‚РѕС†РёРєР»С‹");
 						return false;
 					}
 					break
@@ -988,12 +988,12 @@ function onPlayerCommand(playerid, command)
 						Request[giveplayerid].ReqType = LICENSE;
 						Request[giveplayerid].Params = "fly";
 						Request[giveplayerid].SecondFace = playerid;
-						msg(giveplayerid, ALERT, getPlayerName(playerid)+" предложил сделать вам лицензию на вертолёты за сумму в размере 15000$ Для принятия нажмите Y. N - отказ.");
-						msg(playerid,ALERT,"Вы предложили сделать лицензию на мотоциклы за 15000$");
+						msg(giveplayerid, ALERT, getPlayerName(playerid)+" РїСЂРµРґР»РѕР¶РёР» СЃРґРµР»Р°С‚СЊ РІР°Рј Р»РёС†РµРЅР·РёСЋ РЅР° РІРµСЂС‚РѕР»С‘С‚С‹ Р·Р° СЃСѓРјРјСѓ РІ СЂР°Р·РјРµСЂРµ 15000$ Р”Р»СЏ РїСЂРёРЅСЏС‚РёСЏ РЅР°Р¶РјРёС‚Рµ Y. N - РѕС‚РєР°Р·.");
+						msg(playerid,ALERT,"Р’С‹ РїСЂРµРґР»РѕР¶РёР»Рё СЃРґРµР»Р°С‚СЊ Р»РёС†РµРЅР·РёСЋ РЅР° РјРѕС‚РѕС†РёРєР»С‹ Р·Р° 15000$");
 					}
 					else
 					{
-						msg(playerid,ERROR,"Игрок имеет уже лицензию на вертолёты");
+						msg(playerid,ERROR,"РРіСЂРѕРє РёРјРµРµС‚ СѓР¶Рµ Р»РёС†РµРЅР·РёСЋ РЅР° РІРµСЂС‚РѕР»С‘С‚С‹");
 						return false;
 					}
 					break;
@@ -1004,21 +1004,21 @@ function onPlayerCommand(playerid, command)
 						Request[giveplayerid].ReqType = LICENSE_Water;
 						Request[giveplayerid].Params = "water";
 						Request[giveplayerid].SecondFace = playerid;
-						msg(giveplayerid, ALERT, getPlayerName(playerid)+" предложил сделать вам лицензию на водный транспорт за сумму в размере 5000$ Для принятия нажмите Y. N - отказ.");
-						msg(playerid,ALERT,"Вы предложили сделать лицензию на водный транспорт за 5000$");
+						msg(giveplayerid, ALERT, getPlayerName(playerid)+" РїСЂРµРґР»РѕР¶РёР» СЃРґРµР»Р°С‚СЊ РІР°Рј Р»РёС†РµРЅР·РёСЋ РЅР° РІРѕРґРЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚ Р·Р° СЃСѓРјРјСѓ РІ СЂР°Р·РјРµСЂРµ 5000$ Р”Р»СЏ РїСЂРёРЅСЏС‚РёСЏ РЅР°Р¶РјРёС‚Рµ Y. N - РѕС‚РєР°Р·.");
+						msg(playerid,ALERT,"Р’С‹ РїСЂРµРґР»РѕР¶РёР»Рё СЃРґРµР»Р°С‚СЊ Р»РёС†РµРЅР·РёСЋ РЅР° РІРѕРґРЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚ Р·Р° 5000$");
 					}
 					else
 					{
-						msg(playerid,ERROR,"Игрок имеет уже лицензию на водный транспорт");
+						msg(playerid,ERROR,"РРіСЂРѕРє РёРјРµРµС‚ СѓР¶Рµ Р»РёС†РµРЅР·РёСЋ РЅР° РІРѕРґРЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚");
 						return false;
 					}
 					break;
 				default:
-					msg(playerid, ADVICE, "Доступные лицензии: c(ar), m(otorcycle), f(ly), w(ater).");
+					msg(playerid, ADVICE, "Р”РѕСЃС‚СѓРїРЅС‹Рµ Р»РёС†РµРЅР·РёРё: c(ar), m(otorcycle), f(ly), w(ater).");
 					return false;
 			}
 			break;
-		case "/setplayerpos"://новое
+		case "/setplayerpos"://РЅРѕРІРѕРµ
 			if(Player[playerid].Info.Admin < 5)
 			{
 				haveNoPermissions(playerid);
@@ -1026,16 +1026,16 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() < 4)
 			{
-				msg(playerid, ADVICE, "/setplayerpos [Позиция X] [Позиция Y] [Позиция Z] ([Интерьер] ([Измерение]))");
+				msg(playerid, ADVICE, "/setplayerpos [РџРѕР·РёС†РёСЏ X] [РџРѕР·РёС†РёСЏ Y] [РџРѕР·РёС†РёСЏ Z] ([РРЅС‚РµСЂСЊРµСЂ] ([РР·РјРµСЂРµРЅРёРµ]))");
 				return false;
 			}
-			//TODO: Сделать проверку вводимых данных
+			//TODO: РЎРґРµР»Р°С‚СЊ РїСЂРѕРІРµСЂРєСѓ РІРІРѕРґРёРјС‹С… РґР°РЅРЅС‹С…
 			Player[playerid].SetCoordinates(cmd[1].tofloat(), cmd[2].tofloat(), cmd[3].tofloat());
 			if(cmd.len() >= 5) Player[playerid].SetInterior(cmd[4].tointeger());
 			if(cmd.len() >= 6) Player[playerid].SetDimension(cmd[5].tointeger());
 			break;
 		case "/clothes":
-			triggerClientEvent(playerid, "openSkinShop", getPlayerClothes(playerid));//TODO: Доделать магазин одежды.
+			triggerClientEvent(playerid, "openSkinShop", getPlayerClothes(playerid));//TODO: Р”РѕРґРµР»Р°С‚СЊ РјР°РіР°Р·РёРЅ РѕРґРµР¶РґС‹.
 			break;
 		case "/skin":
 			if(Player[playerid].Info.Admin < 3)
@@ -1045,12 +1045,12 @@ function onPlayerCommand(playerid, command)
 			}
 			if(cmd.len() < 2)
 			{
-				msg(playerid, ADVICE, "/skin ID [ID Игрока]");
+				msg(playerid, ADVICE, "/skin ID [ID РРіСЂРѕРєР°]");
 				return true;
 			}
 			if(!isNumeric(cmd[1]))
 			{
-				msg(playerid, ERROR, "Идентификатор должен быть числом");
+				msg(playerid, ERROR, "РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ С‡РёСЃР»РѕРј");
 				return true;
 			}
 			if(cmd.len() == 2) setPlayerModel(playerid, cmd[1].tointeger());
@@ -1059,25 +1059,25 @@ function onPlayerCommand(playerid, command)
 				giveplayerid = returnUser(cmd[2]);
 				if(giveplayerid == INVALID_PLAYER_ID)
 				{
-					msg(playerid, ERROR, "Этот игрок не всети");
+					msg(playerid, ERROR, "Р­С‚РѕС‚ РёРіСЂРѕРє РЅРµ РІСЃРµС‚Рё");
 					return false;
 				}
 				setPlayerModel(cmd[2].tointeger(), cmd[1].tointeger());
 			}
 			break;
 		default:
-			msg(playerid, ERROR, "Такой команды не существует, либо вы не имеете привилегий на её использование.");
+			msg(playerid, ERROR, "РўР°РєРѕР№ РєРѕРјР°РЅРґС‹ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, Р»РёР±Рѕ РІС‹ РЅРµ РёРјРµРµС‚Рµ РїСЂРёРІРёР»РµРіРёР№ РЅР° РµС‘ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ.");
 			break;
 	}
 }
 addEvent("playerCommand", onPlayerCommand);
-//#Игрок написал что-то в чат#//
+//#РРіСЂРѕРє РЅР°РїРёСЃР°Р» С‡С‚Рѕ-С‚Рѕ РІ С‡Р°С‚#//
 function onPlayerText( playerid, text )
 {
 	local message = split(text, " ");
     switch(text[0])
 	{
-		case "#":                     //новое
+		case "#":                     //РЅРѕРІРѕРµ
 			radio(playerid, message[1]);
 			break;
 		case "!":
@@ -1286,19 +1286,19 @@ function isPlayerNearVehicle(playerid, vehicleid, radius = 3.0)
     return isPointInBall(playerPos[0], playerPos[1], playerPos[2], vehiclePos[0], vehiclePos[1], vehiclePos[2], radius);
 }
 
-function radio(playerid, message)//новое
+function radio(playerid, message)//РЅРѕРІРѕРµ
 {
 	
 	local rank = Player[playerid].Info.Faction.Number;
-	local fracColor = "[FFFFFFFF]";//TODO: Цвета фракций
+	local fracColor = "[FFFFFFFF]";//TODO: Р¦РІРµС‚Р° С„СЂР°РєС†РёР№
 	for(local i = 0; i < MAX_PLAYERS; i++)
 	{
-		if(Player[playerid].Info.Faction.Number == Player[i].Info.Faction.Number) sendPlayerMessage(i, getPlayerName(playerid) + " передаёт по рации: " + fracColor + message, 0xFFFFFFFF, true);
+		if(Player[playerid].Info.Faction.Number == Player[i].Info.Faction.Number) sendPlayerMessage(i, getPlayerName(playerid) + " РїРµСЂРµРґР°С‘С‚ РїРѕ СЂР°С†РёРё: " + fracColor + message, 0xFFFFFFFF, true);
 	}
 	return true;
 }
 
-function modelVehicle(model)//новое
+function modelVehicle(model)//РЅРѕРІРѕРµ
 {
 	if(model < 105) return "car"; 
 	else if(model < 112 && model >= 105 && model != 106) return "motorcycle"; 
@@ -1396,7 +1396,7 @@ function onSkinChoose(playerid, temp)
 				break;
 			case 3:
 				SkinChoose[playerid] = false;
-				msg(playerid, ALERT, "Поздравляем с выбором модели игрока.");
+				msg(playerid, ALERT, "РџРѕР·РґСЂР°РІР»СЏРµРј СЃ РІС‹Р±РѕСЂРѕРј РјРѕРґРµР»Рё РёРіСЂРѕРєР°.");
 				break;
 		}
 	}
@@ -1607,7 +1607,7 @@ function MysqlConnection(status)
 
 function haveNoPermissions(playerid)
 {
-	sendPlayerMessage(playerid, "Такой команды не существует, либо вы не имеете привилегий на её использование.");
+	sendPlayerMessage(playerid, "РўР°РєРѕР№ РєРѕРјР°РЅРґС‹ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, Р»РёР±Рѕ РІС‹ РЅРµ РёРјРµРµС‚Рµ РїСЂРёРІРёР»РµРіРёР№ РЅР° РµС‘ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ.");
 	return true;
 }
 
@@ -1616,13 +1616,13 @@ function msg(playerid, msgtype, text)
 	switch(msgtype)
 	{
 		case ERROR:
-			sendPlayerMessage(playerid, "[FFFFFFFF]Ошибка: [AA0000FF]"+text, 0xFFFFFFFF, true);
+			sendPlayerMessage(playerid, "[FFFFFFFF]РћС€РёР±РєР°: [AA0000FF]"+text, 0xFFFFFFFF, true);
 			break;
 		case ALERT:
-			sendPlayerMessage(playerid, "[FFFFFFFF]Уведомление: [00FF00FF]"+text, 0xFFFFFFFF, true);
+			sendPlayerMessage(playerid, "[FFFFFFFF]РЈРІРµРґРѕРјР»РµРЅРёРµ: [00FF00FF]"+text, 0xFFFFFFFF, true);
 			break;
 		case ADVICE:
-			sendPlayerMessage(playerid, "[FFFFFFFF]Подсказка: [AAAAAAAA]"+text, 0xFFFFFFFF, true);
+			sendPlayerMessage(playerid, "[FFFFFFFF]РџРѕРґСЃРєР°Р·РєР°: [AAAAAAAA]"+text, 0xFFFFFFFF, true);
 			break;
 	}
 	return true;
@@ -1638,7 +1638,7 @@ function sendMessageToAdmins(text, level)
 			{
 				if(Player[i].Info.Admin >= level)
 				{
-					sendPlayerMessage(i, "[FFFFFFFF]Чат администрации: [AAFF00FF]"+text, 0xFFFFFFFF, true);
+					sendPlayerMessage(i, "[FFFFFFFF]Р§Р°С‚ Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё: [AAFF00FF]"+text, 0xFFFFFFFF, true);
 				}
 			}
 		}
@@ -1699,7 +1699,7 @@ function getVehicleDriftAngle(vehicleid) {
 
 
 
-//#Классы#//
+//#РљР»Р°СЃСЃС‹#//
 /*
 * Date: 05.07.2013
 * Time: 11:06
@@ -1717,7 +1717,7 @@ class player
 	mysqlhandler = null;
 	firstspawn = false;
 	died = false;
-	//#Стартовые параметры игрока после регистрации#//
+	//#РЎС‚Р°СЂС‚РѕРІС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РёРіСЂРѕРєР° РїРѕСЃР»Рµ СЂРµРіРёСЃС‚СЂР°С†РёРё#//
 	StartParams = { };
 	constructor(id, handler)
 	{
@@ -1783,7 +1783,7 @@ class player
 	function Join()
 	{
 		name = getPlayerName(playerid);
-		sendMessageToAll("[FF0000FF]" + name + " [00FF0000]присоединился к серверу!", 0xFFFFFFFF, true);
+		sendMessageToAll("[FF0000FF]" + name + " [00FF0000]РїСЂРёСЃРѕРµРґРёРЅРёР»СЃСЏ Рє СЃРµСЂРІРµСЂСѓ!", 0xFFFFFFFF, true);
 		local result = mysql_query(mysqlhandler, "SELECT * FROM `users` WHERE `Name`='"+mysql_escape_string(mysqlhandler, name)+"' LIMIT 1;");
 		log(mysql_error(mysqlhandler));
 		rows = mysql_affected_rows(mysqlhandler);
@@ -1796,7 +1796,7 @@ class player
 	function Disconnect(reason)
 	{
 		if(Info.Temp.IsLogged == true) Logout();
-		sendMessageToAdmins("Игрок "+getPlayerName(playerid)+" отключился от сервера, причина: "+((reason == 0) ? "Вышел" : "Вылетел"), 1);
+		sendMessageToAdmins("РРіСЂРѕРє "+getPlayerName(playerid)+" РѕС‚РєР»СЋС‡РёР»СЃСЏ РѕС‚ СЃРµСЂРІРµСЂР°, РїСЂРёС‡РёРЅР°: "+((reason == 0) ? "Р’С‹С€РµР»" : "Р’С‹Р»РµС‚РµР»"), 1);
 		return true;
 	}
 	
@@ -1817,7 +1817,7 @@ class player
 		}
 		else
 		{
-			msg(playerid, ERROR, "Пароль должен содержать только строчные и прописные латинские буквы, цифры, спецсимволы. Минимум 8 символов");
+			msg(playerid, ERROR, "РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С‚РѕР»СЊРєРѕ СЃС‚СЂРѕС‡РЅС‹Рµ Рё РїСЂРѕРїРёСЃРЅС‹Рµ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹, С†РёС„СЂС‹, СЃРїРµС†СЃРёРјРІРѕР»С‹. РњРёРЅРёРјСѓРј 8 СЃРёРјРІРѕР»РѕРІ");
 			return true;
 		}
 	}
@@ -1880,7 +1880,7 @@ class player
 			Info.Temp <- { };
 			Info.Temp.IsLogged <- true;
 			triggerClientEvent(playerid, "getRequest", true);
-			sendPlayerMessage(playerid, "Вы успешно вошли в систему. [0000FFFF]Все ваши данные были загружены.", 0x00FF00FF, true);
+			sendPlayerMessage(playerid, "Р’С‹ СѓСЃРїРµС€РЅРѕ РІРѕС€Р»Рё РІ СЃРёСЃС‚РµРјСѓ. [0000FFFF]Р’СЃРµ РІР°С€Рё РґР°РЅРЅС‹Рµ Р±С‹Р»Рё Р·Р°РіСЂСѓР¶РµРЅС‹.", 0x00FF00FF, true);
 			setPlayerHealth(playerid, Info.Health);
 			setPlayerArmour(playerid, Info.Armour);
 			setPlayerModel(playerid, Info.Model);
@@ -1907,7 +1907,7 @@ class player
 		{
 			mysql_free_result(result);
 			triggerClientEvent(playerid, "getRequest", false);
-			sendPlayerMessage(playerid, "Ошибка входа. [0000FFFF]Пользователя с таким сочетанием логина и пароля не существует.", 0x00FF00FF, true);
+			sendPlayerMessage(playerid, "РћС€РёР±РєР° РІС…РѕРґР°. [0000FFFF]РџРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ С‚Р°РєРёРј СЃРѕС‡РµС‚Р°РЅРёРµРј Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.", 0x00FF00FF, true);
 			return false;
 		}
 	}
@@ -2129,7 +2129,7 @@ class houses
 		Info[houseid].Exit.Y <- exit_y;
 		Info[houseid].Exit.Z <- exit_z;
 		Info[houseid].BuyPrice <- buyprice;
-		Info[houseid].Text3D <- create3DLabel("[0000FFFF]Номер дома: [00FFFFFF]#"+houseid.tostring()+"\n[0000FFFF]Описание: [00FFFFFF]"+Info[houseid].Name.tostring()+"\n[0000FFFF]Цена: [00FFFFFF]"+Info[houseid].BuyPrice.tostring()+"[00FF00FF]$", Info[houseid].Enter.X, Info[houseid].Enter.Y, Info[houseid].Enter.Z, 0xFFFFFFFF, true, 10.0);
+		Info[houseid].Text3D <- create3DLabel("[0000FFFF]РќРѕРјРµСЂ РґРѕРјР°: [00FFFFFF]#"+houseid.tostring()+"\n[0000FFFF]РћРїРёСЃР°РЅРёРµ: [00FFFFFF]"+Info[houseid].Name.tostring()+"\n[0000FFFF]Р¦РµРЅР°: [00FFFFFF]"+Info[houseid].BuyPrice.tostring()+"[00FF00FF]$", Info[houseid].Enter.X, Info[houseid].Enter.Y, Info[houseid].Enter.Z, 0xFFFFFFFF, true, 10.0);
 		return true;
 	}
 	
@@ -2152,7 +2152,7 @@ class houses
 			Info[houseid].Exit.Y <- arr["Exit_y"];
 			Info[houseid].Exit.Z <- arr["Exit_z"];
 			Info[houseid].BuyPrice <- arr["BuyPrice"];
-			Info[houseid].Text3D <- create3DLabel("[0000FFFF]Номер дома: [00FFFFFF]#"+houseid.tostring()+"\n[0000FFFF]Описание: [00FFFFFF]"+Info[houseid].Name.tostring()+"\n[0000FFFF]Цена: [00FFFFFF]"+Info[houseid].BuyPrice.tostring()+"[00FF00FF]$", Info[houseid].Enter.X, Info[houseid].Enter.Y, Info[houseid].Enter.Z, 0xFFFFFFFF, true, 10.0);
+			Info[houseid].Text3D <- create3DLabel("[0000FFFF]РќРѕРјРµСЂ РґРѕРјР°: [00FFFFFF]#"+houseid.tostring()+"\n[0000FFFF]РћРїРёСЃР°РЅРёРµ: [00FFFFFF]"+Info[houseid].Name.tostring()+"\n[0000FFFF]Р¦РµРЅР°: [00FFFFFF]"+Info[houseid].BuyPrice.tostring()+"[00FF00FF]$", Info[houseid].Enter.X, Info[houseid].Enter.Y, Info[houseid].Enter.Z, 0xFFFFFFFF, true, 10.0);
 		}
 		mysql_free_result(result);
 		return true;
@@ -2173,7 +2173,7 @@ class houses
 }
 log("Houses class loaded.");
 
-class biz //новое
+class biz //РЅРѕРІРѕРµ
 {
 	Info = { };
 	mysqlhandler = null;
@@ -2200,7 +2200,7 @@ class biz //новое
 		Info[bizid].Enter.Z <- enter_z;
 		Info[bizid].BuyPrice <- buyprice;
 		Info[bizid].Prices <- "";
-		Info[bizid].Text3D <- create3DLabel("[0000FFFF]Номер бизнеса: [00FFFFFF]#"+bizid.tostring()+"\n[0000FFFF]Описание: [00FFFFFF]"+Info[bizid].Name.tostring()+"\n[0000FFFF]Цена: [00FFFFFF]"+Info[bizid].BuyPrice.tostring()+"[00FF00FF]$", Info[bizid].Enter.X, Info[bizid].Enter.Y, Info[bizid].Enter.Z, 0xFFFFFFFF, true, 10.0);
+		Info[bizid].Text3D <- create3DLabel("[0000FFFF]РќРѕРјРµСЂ Р±РёР·РЅРµСЃР°: [00FFFFFF]#"+bizid.tostring()+"\n[0000FFFF]РћРїРёСЃР°РЅРёРµ: [00FFFFFF]"+Info[bizid].Name.tostring()+"\n[0000FFFF]Р¦РµРЅР°: [00FFFFFF]"+Info[bizid].BuyPrice.tostring()+"[00FF00FF]$", Info[bizid].Enter.X, Info[bizid].Enter.Y, Info[bizid].Enter.Z, 0xFFFFFFFF, true, 10.0);
 		return true;
 	}
 	
@@ -2224,7 +2224,7 @@ class biz //новое
 			Info[bizid].Owner <- arr["Owner"];
 			Info[bizid].BuyPrice <- arr["BuyPrice"];
 			Info[bizid].Prices <- arr["Prices"];
-			Info[bizid].Text3D <- create3DLabel("[0000FFFF]Номер бизнеса: [00FFFFFF]#"+bizid.tostring()+"\n[0000FFFF]Описание: [00FFFFFF]"+Info[bizid].Name.tostring()+"\n[0000FFFF]Цена: [00FFFFFF]"+Info[bizid].BuyPrice.tostring()+"[00FF00FF]$", Info[bizid].Enter.X, Info[bizid].Enter.Y, Info[bizid].Enter.Z, 0xFFFFFFFF, true, 10.0);
+			Info[bizid].Text3D <- create3DLabel("[0000FFFF]РќРѕРјРµСЂ Р±РёР·РЅРµСЃР°: [00FFFFFF]#"+bizid.tostring()+"\n[0000FFFF]РћРїРёСЃР°РЅРёРµ: [00FFFFFF]"+Info[bizid].Name.tostring()+"\n[0000FFFF]Р¦РµРЅР°: [00FFFFFF]"+Info[bizid].BuyPrice.tostring()+"[00FF00FF]$", Info[bizid].Enter.X, Info[bizid].Enter.Y, Info[bizid].Enter.Z, 0xFFFFFFFF, true, 10.0);
 		}
 		mysql_free_result(result);
 		return true;
